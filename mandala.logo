@@ -1,0 +1,20 @@
+to main
+	abcd, setpower 0 on
+	loop [
+		waituntil [sensora > 100]
+		run-lights 0
+	]
+end
+
+to run-lights :count
+	if :count = 8 [
+		wait 15
+		abcd, setpower 0
+		stop
+	]
+
+	ab, setpower 8 - :count
+	cd, setpower :count
+	wait 2
+	run-lights :count + 1
+end
