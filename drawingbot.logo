@@ -1,0 +1,50 @@
+global [prevspeed1]
+global [prevspeed2]
+global [dspeed1]
+global [dspeed2]
+global [deltamax]
+
+to main
+	ab, setpower 0 on
+	setprevspeed1 0
+	setprevspeed2 0
+	wait 5
+	loop [
+		modify-speed random % 2 random % 2 random % 4
+		a, setpower prevspeed1
+		b, setpower prevspeed2
+		if random % 10 = 5 [
+			a, rd
+		]
+		if random % 10 = 5 [
+			b, rd
+		]
+		wait random % 4
+	]
+end
+
+to modify-speed :dspeed1 :dspeed2 :direction
+	if :direction = 0 [
+		setprevspeed1 prevspeed1 + :dspeed1
+		setprevspeed2 prevspeed2 + :dspeed2
+	]
+	if :direction = 1 [
+		setprevspeed1 prevspeed1 - :dspeed1
+		setprevspeed2 prevspeed2 + :dspeed2
+	]
+	if :direction = 2 [
+		setprevspeed1 prevspeed1 + :dspeed1
+		setprevspeed2 prevspeed2 - :dspeed2
+	]	
+	if :direction = 3 [
+		setprevspeed1 prevspeed1 - :dspeed1
+		setprevspeed2 prevspeed2 - :dspeed2
+	]
+	if prevspeed1 < 0 or prevspeed1 > 8  [
+		setprevspeed1 4
+	]
+	if prevspeed2 < 0 or prevspeed2 > 8 [
+		setprevspeed2 4
+	]	
+		
+end
