@@ -1,0 +1,13 @@
+to main
+	a, setpower 0
+	b, setpower 2
+	ab, on
+	loop [
+		if sensora > 140 [
+			a, setpower 5
+		]
+		if sensora < 135 [
+			a, setpower 0
+		]
+	]
+end
