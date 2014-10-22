@@ -1,0 +1,17 @@
+global [servopos]
+to main
+	setservopos 0
+	servo 1 servopos
+	loop [
+		if sensora > 140 [
+			send sensora
+			note sensora - 140 5
+		]
+		setservopos servopos + 3
+		servo 1 servopos
+		if servopos > 250 [
+			setservopos 0
+		]
+		wait 10
+	]
+end
