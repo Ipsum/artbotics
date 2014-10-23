@@ -1,17 +1,19 @@
 global [servopos]
+global [sensorval]
 to main
 	setservopos 0
 	servo 1 servopos
 	loop [
-		if sensora > 140 [
-			send sensora
-			note sensora - 140 5
+		setsensorval sensora
+		if sensorval > 135 [
+			send sensorval
+			note sensorval - 135 5
 		]
 		setservopos servopos + 3
 		servo 1 servopos
 		if servopos > 250 [
 			setservopos 0
 		]
-		wait 10
+		wait 3
 	]
 end
